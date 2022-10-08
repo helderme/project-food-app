@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './CartItem.css';
+import AppContext from '../context/AppContext';
 
 function CartItems(props) {
-  const { name, description, price, id, quantity } = props;
-  console.log({ name, description, price, id, quantity });
+  const { name, price, id, quantity } = props;
+  const { totalAmountSum, cart, setCart, setTotalProducts } = useContext(AppContext);
+
+  const incrementQuantityCart = () => {
+    const index = cart.findIndex((product) => product.id === id);
+    const newQuantity = cart[index].quantity + 1;
+    const newCart = cart;
+    newCart[index].quantity = newQuantity;
+    setCart(newCart);
+    setTotalProducts(newCart);
+    totalAmountSum(newCart);
+  };
+
+  const decrementQuantityCart = () => {
+    const index = cart.findIndex((product) => product.id === id);
+    const newQuantity = cart[index].quantity - 1;
+    if (newQuantity < 1) {
+      const newCart = cart.filter((product) => product.id !== id);
+      setCart(newCart);
+      setTotalProducts(newCart);
+      totalAmountSum(newCart);
+    } else {
+      const newCart = cart;
+      newCart[index].quantity = newQuantity;
+      setCart(newCart);
+      setTotalProducts(newCart);
+      totalAmountSum(newCart);
+    }
+  };
+
   return (
     <div>
       <div className="cart-items">
@@ -23,16 +52,16 @@ function CartItems(props) {
           <button
             type="button"
             className="product-card-increment-button"
-            onClick={ () => console.log('olá') }
+            onClick={ decrementQuantityCart }
           >
-            <span className="quantity-change-symbol">-</span>
+            <span>-</span>
           </button>
           <button
             type="button"
             className="product-card-increment-button"
-            onClick={ () => console.log('olá') }
+            onClick={ incrementQuantityCart }
           >
-            <span className="quantity-change-symbol">+</span>
+            <span>+</span>
           </button>
         </div>
       </div>
@@ -45,7 +74,6 @@ CartItems.propTypes = {
   id: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
 };
 

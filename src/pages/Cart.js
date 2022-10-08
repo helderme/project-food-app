@@ -4,7 +4,8 @@ import AppContext from '../context/AppContext';
 import CartItems from '../components/CartItems';
 
 function Cart() {
-  const { showCart, setShowCart, cart } = useContext(AppContext);
+  const { showCart, setShowCart, cart, totalAmount } = useContext(AppContext);
+
   return (
     <div className={ showCart ? 'cart' : 'hide-cart' }>
       <div className="cart-background" />
@@ -14,15 +15,13 @@ function Cart() {
         </div>
         <div className="cart-total-amount">
           <h2>Total Amount</h2>
-          <h2>$0.00</h2>
+          <h2>{ `$${totalAmount.toFixed(2)}` }</h2>
         </div>
         <div>
           <button type="button" onClick={ () => setShowCart(false) }>
             close
           </button>
-          <button type="button">
-            order
-          </button>
+          {(cart.length > 0) && <button type="button">order </button>}
         </div>
       </div>
     </div>
