@@ -1,0 +1,39 @@
+.header {
+  background-color: #502314;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header-title {
+  color: #f2e5d4;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.header-cart-button {
+  border-radius: 35px;
+  background-color: #FFAA00;
+  width: 200px;
+  height: 60px;
+  border: none;
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header-cart-quantity {
+  border-radius: 50%;
+  background-color: #ed7902;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
