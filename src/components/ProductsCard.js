@@ -5,7 +5,11 @@ import AppContext from '../context/AppContext';
 
 function ProductsCard(props) {
   const { name, description, price, img, id } = props;
-  const { cart, setCart } = useContext(AppContext);
+  const {
+    cart,
+    setCart,
+    setCartQuantity,
+  } = useContext(AppContext);
   const [quantity, setquantity] = useState(0);
   const NEGATIVE_ONE = -1;
 
@@ -14,17 +18,29 @@ function ProductsCard(props) {
     if (quantity > 0) setquantity(quantity - 1);
   };
 
+  const setTotalProducts = (newCart) => {
+    const sum = newCart.reduce(
+      (previousValue, product) => previousValue + product.quantity,
+      0,
+    );
+    if (typeof sum === 'number') {
+      setCartQuantity(sum);
+    }
+  };
+
   const addToCart = () => {
     const index = cart.findIndex((product) => product.id === id);
     if (index === NEGATIVE_ONE && quantity > 0) {
       const newCart = ([...cart, { ...props, quantity }]);
       setCart(newCart);
+      setTotalProducts(newCart);
     }
     if (index !== NEGATIVE_ONE && quantity > 0) {
       const newQuantity = cart[index].quantity + quantity;
       const newCart = cart;
       newCart[index].quantity = newQuantity;
       setCart(newCart);
+      setTotalProducts(newCart);
     }
   };
 

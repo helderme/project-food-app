@@ -6,11 +6,14 @@ function ApiProvider(props) {
   const { children } = props;
 
   const [cart, setCart] = useState([]);
+  const [cartQuantity, setCartQuantity] = useState(0);
 
   const providerValue = useMemo(() => ({
     cart,
     setCart,
-  }), [cart]);
+    cartQuantity,
+    setCartQuantity,
+  }), [cart, cartQuantity]);
 
   return (
     <ApiContext.Provider value={ providerValue }>
