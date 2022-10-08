@@ -1,0 +1,32 @@
+.products {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.products-introduction {
+  background-color: #502314;
+  color: rgb(245, 235, 220);
+  width: 720px;
+  height: 230px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 780px) {
+  .products-introduction {
+    align-content: space-between;
+    width: 90%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
