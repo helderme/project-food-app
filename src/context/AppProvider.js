@@ -5,7 +5,7 @@ import ApiContext from './AppContext';
 function ApiProvider(props) {
   const { children } = props;
 
-  const [cart, setCart] = useState('teste');
+  const [cart, setCart] = useState([]);
 
   const providerValue = useMemo(() => ({
     cart,

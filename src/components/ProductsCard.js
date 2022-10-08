@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import './ProductsCard.css';
+import AppContext from '../context/AppContext';
 
 function ProductsCard(props) {
-  const { name, description, price, img } = props;
+  const { name, description, price, img, id } = props;
+  const { cart, setCart } = useContext(AppContext);
   const [quantity, setquantity] = useState(0);
+  const NEGATIVE_ONE = -1;
 
   const incrementQuantity = () => setquantity(quantity + 1);
   const decrementQuantity = () => {
     if (quantity > 0) setquantity(quantity - 1);
+  };
+
+  const addToCart = () => {
+    const index = cart.findIndex((product) => product.id === id);
+    if (index === NEGATIVE_ONE && quantity > 0) {
+      const newCart = ([...cart, { ...props, quantity }]);
+      setCart(newCart);
+    }
+    if (index !== NEGATIVE_ONE && quantity > 0) {
+      const newQuantity = cart[index].quantity + quantity;
+      const newCart = cart;
+      newCart[index].quantity = newQuantity;
+      setCart(newCart);
+    }
   };
 
   return (
@@ -37,7 +54,12 @@ function ProductsCard(props) {
         >
           +
         </button>
-        <button type="button" className="product-card-add-button">
+        <button
+          type="button"
+          className="product-card-add-button"
+          onClick={ addToCart }
+          disabled={ quantity === 0 }
+        >
           Add
         </button>
       </div>
@@ -46,6 +68,7 @@ function ProductsCard(props) {
 }
 
 ProductsCard.propTypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
