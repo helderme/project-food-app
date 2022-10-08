@@ -18,10 +18,15 @@ function Cart() {
           <h2>{ `$${totalAmount.toFixed(2)}` }</h2>
         </div>
         <div>
-          <button type="button" onClick={ () => setShowCart(false) }>
-            close
+          <button
+            type="button"
+            onClick={ () => setShowCart(false) }
+            className="close-cart-btn"
+          >
+            close X
           </button>
-          {(cart.length > 0) && <button type="button">order </button>}
+          {(cart.length > 0) && (
+            <button type="button" className="order-cart-btn">order </button>)}
         </div>
       </div>
     </div>
