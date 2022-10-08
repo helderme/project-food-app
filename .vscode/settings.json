@@ -1,5 +1,14 @@
 {
   "conventionalCommits.scopes": [
-    "config"
+    "config",
+    "data",
+    "component",
+    "product",
+    "context",
+    "function",
+    "page",
+    "modal",
+    "assets",
+    "readme"
   ]
 }
