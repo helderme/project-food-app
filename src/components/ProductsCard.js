@@ -16,7 +16,7 @@ function ProductsCard(props) {
       <h3>{`$${price.toFixed(2)}`}</h3>
       <div>
         <button type="button" className="product-card-increment-button">-</button>
-        {` ${'0'} `}
+        <span className="product-card-quantity">{` ${'0'} `}</span>
         <button type="button" className="product-card-increment-button">+</button>
         <button type="button" className="product-card-add-button">
           Add
