@@ -4,7 +4,7 @@ import AppContext from '../context/AppContext';
 
 function Header() {
   const THREE_HUNDRED = 300;
-  const { cartQuantity } = useContext(AppContext);
+  const { cartQuantity, setShowCart } = useContext(AppContext);
   const [bump, setBump] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,11 @@ function Header() {
   return (
     <div className="header">
       <p className="header-title">FoodApp</p>
-      <button type="button" className={ `header-cart-button ${bump ? 'bump' : ''}` }>
+      <button
+        type="button"
+        className={ `header-cart-button ${bump ? 'bump' : ''}` }
+        onClick={ () => setShowCart(true) }
+      >
         <span>Your Cart</span>
         <span className="header-cart-quantity">
           { cartQuantity }
