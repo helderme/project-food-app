@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ProductsCard from '../components/ProductsCard';
 import Header from '../components/Header';
 import dataProducts from '../data/dataProducts';
+import AppContext from '../context/AppContext';
 import './Products.css';
 
 function Products() {
+  const { cart } = useContext(AppContext);
+  console.log(cart);
   return (
     <div>
       <Header />

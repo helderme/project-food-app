@@ -1,9 +1,12 @@
+import AppProvider from './context/AppProvider';
 import Products from './pages/Products';
 
 function App() {
   return (
     <div className="App">
-      <Products />
+      <AppProvider>
+        <Products />
+      </AppProvider>
     </div>
   );
 }
