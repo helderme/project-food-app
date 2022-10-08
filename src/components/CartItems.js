@@ -9,13 +9,13 @@ function CartItems(props) {
     <div>
       <div className="cart-items">
         <div>
-          <h2>Sushi</h2>
+          <h2>{name}</h2>
           <div className="cart-value-quantity">
             <h3>
-              { `$${'0.00'}` }
+              { `$${price.toFixed(2)}` }
             </h3>
             <h3>
-              { `x${'5'}` }
+              { `x${quantity}` }
             </h3>
           </div>
         </div>
