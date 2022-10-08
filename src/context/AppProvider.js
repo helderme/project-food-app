@@ -8,15 +8,38 @@ function ApiProvider(props) {
   const [cart, setCart] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(0);
   const [showCart, setShowCart] = useState(false);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  const setTotalProducts = (newCart) => {
+    const sum = newCart.reduce(
+      (previousValue, product) => previousValue + product.quantity,
+      0,
+    );
+    if (typeof sum === 'number') {
+      setCartQuantity(sum);
+    }
+  };
+
+  const totalAmountSum = (newCart) => {
+    const sum = newCart.reduce(
+      (previousValue, product) => previousValue + (product.price * product.quantity),
+      0,
+    );
+    if (typeof sum === 'number') {
+      setTotalAmount(sum);
+    }
+  };
 
   const providerValue = useMemo(() => ({
     cart,
     setCart,
     cartQuantity,
-    setCartQuantity,
+    setTotalProducts,
     showCart,
     setShowCart,
-  }), [cart, cartQuantity, showCart]);
+    totalAmount,
+    totalAmountSum,
+  }), [cart, cartQuantity, showCart, totalAmount]);
 
   return (
     <ApiContext.Provider value={ providerValue }>

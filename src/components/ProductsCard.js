@@ -8,7 +8,8 @@ function ProductsCard(props) {
   const {
     cart,
     setCart,
-    setCartQuantity,
+    setTotalProducts,
+    totalAmountSum,
   } = useContext(AppContext);
   const [quantity, setquantity] = useState(0);
   const NEGATIVE_ONE = -1;
@@ -18,22 +19,13 @@ function ProductsCard(props) {
     if (quantity > 0) setquantity(quantity - 1);
   };
 
-  const setTotalProducts = (newCart) => {
-    const sum = newCart.reduce(
-      (previousValue, product) => previousValue + product.quantity,
-      0,
-    );
-    if (typeof sum === 'number') {
-      setCartQuantity(sum);
-    }
-  };
-
   const addToCart = () => {
     const index = cart.findIndex((product) => product.id === id);
     if (index === NEGATIVE_ONE && quantity > 0) {
       const newCart = ([...cart, { ...props, quantity }]);
       setCart(newCart);
       setTotalProducts(newCart);
+      totalAmountSum(newCart);
     }
     if (index !== NEGATIVE_ONE && quantity > 0) {
       const newQuantity = cart[index].quantity + quantity;
@@ -41,6 +33,7 @@ function ProductsCard(props) {
       newCart[index].quantity = newQuantity;
       setCart(newCart);
       setTotalProducts(newCart);
+      totalAmountSum(newCart);
     }
   };
 
