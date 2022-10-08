@@ -50,6 +50,9 @@
   background-color: #FFAA00;
   border: none;
   width: 35px;
+  margin: 5px;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .product-card-increment-button:hover {
