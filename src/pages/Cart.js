@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './Cart.css';
 import AppContext from '../context/AppContext';
+import CartItems from '../components/CartItems';
 
 function Cart() {
   const { showCart, setShowCart } = useContext(AppContext);
@@ -8,6 +9,9 @@ function Cart() {
     <div className={ showCart ? 'cart' : 'hide-cart' }>
       <div className="cart-background" />
       <div className="cart-container">
+        <div>
+          <CartItems />
+        </div>
         <div>
           <button type="button" onClick={ () => setShowCart(false) }>
             close
