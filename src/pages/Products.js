@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ProductsCard from '../components/ProductsCard';
 import Header from '../components/Header';
 import dataProducts from '../data/dataProducts';
-import AppContext from '../context/AppContext';
 import './Products.css';
+import Footer from '../components/Footer';
 
 function Products() {
-  const { cart } = useContext(AppContext);
-  console.log(cart);
   return (
     <div>
       <Header />
@@ -20,8 +18,8 @@ function Products() {
           {dataProducts.map((item) => ProductsCard(item))}
         </section>
       </div>
+      <Footer />
     </div>
-
   );
 }
 
