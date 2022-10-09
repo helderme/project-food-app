@@ -7,7 +7,4 @@ conhecimentos em `React` e `Javascript`. Foi implementado um carrinho de compras
 
 Para comunicação entre componentes: `Context Api`.
 
-
-
-
-
+Demonstração: <https://helderme.github.io/food-app>
